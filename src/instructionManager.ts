@@ -43,8 +43,8 @@ export class InstructionManager {
     }
 
     private generateInstructions(level: string): string {
-        const timestamp = new Date().toISOString();
-        const header = `# GitHub Copilot Instructions
+      const timestamp = new Date().toISOString();
+      const header = `# GitHub Copilot Instructions
 > Last updated: ${timestamp}
 > Assistance Level: ${level}
 
@@ -52,28 +52,32 @@ export class InstructionManager {
 - Assistance Level: ${level}
 - Mode: Active
 - Instruction Version: 1.0
+
 `;
 
-        let specificInstructions = '';
-        switch (level) {
-            case 'low':
-                specificInstructions = `
-minimal inline suggestions
-`;
-                break;
+      let specificInstructions = '';
+      switch (level) {
+        case 'low':
+          specificInstructions = `- Only suggest when non-trivial or unfamiliar concepts are involved.
+        - Avoid suggestions for basics or commonly known patterns.
+        - Limited to completing the current line.`;
+          break;
+      
+      case 'medium':
+          specificInstructions = 
+          `- Provide partial guidance (e.g., part of a function or snippet).
+            - Focus on core parts, leaving details for the developer to fill in.`;
+          break;
+      
+      case 'high':
+          specificInstructions = `- Provide full and detailed suggestions.
+      - Include comprehensive implementations and context-aware guidance.
+      - Suggest optimizations, alternatives, and best practices.
+      `;
+          break;
+      }
 
-            case 'medium':
-                specificInstructions = `
-moderate inline suggestions
-`;
-                break;
-
-            case 'high':
-                specificInstructions = `
-`;
-                break;
-        }
-
-        return specificInstructions;
-    }
+      return `Copilot will adjust its suggestions based on these guidelines
+` + specificInstructions;
+  }
 }
