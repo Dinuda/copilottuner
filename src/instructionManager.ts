@@ -58,9 +58,7 @@ export class InstructionManager {
       let specificInstructions = '';
       switch (level) {
         case 'low':
-          specificInstructions = `- Only suggest when non-trivial or unfamiliar concepts are involved.
-        - Avoid suggestions for basics or commonly known patterns.
-        - Limited to completing the current line.`;
+          specificInstructions = `- Limited to completing the current line.`;
           break;
       
       case 'medium':
