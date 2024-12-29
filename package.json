@@ -9,16 +9,29 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:copilot.switchAssistanceLevel"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "copilottuner.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
+	  "commands": [
+		{
+		  "command": "copilot.switchAssistanceLevel",
+		  "title": "Switch Copilot Assistance Level"
+		}
+	  ],
+	  "configuration": {
+		"title": "Copilot Assistance",
+		"properties": {
+		  "copilot.assistanceLevel": {
+			"type": "string",
+			"default": "medium",
+			"enum": ["low", "medium", "high"],
+			"description": "Sets the level of assistance provided by Copilot"
+		  }
+		}
+	  }
+	},
   "scripts": {
     "vscode:prepublish": "pnpm run package",
     "compile": "webpack",
